@@ -1,0 +1,132 @@
+//TASK 1
+import numpy as np
+
+array_1d = np.arange(1, 11)
+array_2d = np.arange(1, 10).reshape(3, 3)
+array_3d = np.random.rand(3, 5, 3)
+
+print("1D:", array_1d.shape, array_1d.size, array_1d.dtype)
+print("2D:", array_2d.shape, array_2d.size, array_2d.dtype)
+print("3D:", array_3d.shape, array_3d.size, array_3d.dtype)
+
+
+//TASK 2
+
+data = np.array([10, 20, 30, 40, 50, 60, 70, 80, 90])
+
+first_three = data[:3]
+alternate = data[::2]
+reversed_array = data[::-1]
+
+print("First 3:", first_three)
+print("Alternate:", alternate)
+print("Reversed:", reversed_array)
+
+
+//TASK 3
+
+A = np.random.randint(1, 21, size=5)
+B = np.random.randint(1, 21, size=5)
+
+add = A + B
+sub = A - B
+mul = A * B
+div = A / B
+
+dot_product = np.dot(A, B)
+
+mean = np.mean(A)
+median = np.median(A)
+std_dev = np.std(A)
+variance = np.var(A)
+
+max_val = np.max(B)
+min_val = np.min(B)
+max_index = np.argmax(B)
+min_index = np.argmin(B)
+
+print("A:", A)
+print("B:", B)
+print("Add:", add)
+print("Subtract:", sub)
+print("Multiply:", mul)
+print("Divide:", div)
+print("Dot Product:", dot_product)
+print("Mean:", mean)
+print("Median:", median)
+print("Std Dev:", std_dev)
+print("Variance:", variance)
+print("Max B:", max_val, "at index", max_index)
+print("Min B:", min_val, "at index", min_index)
+
+
+//TASK 4
+
+arr = np.arange(1, 13)
+
+reshaped_2d = arr.reshape(4, 3)
+reshaped_3d = arr.reshape(2, 2, 3)
+transposed = reshaped_2d.T
+
+print("2D:\n", reshaped_2d)
+print("3D:\n", reshaped_3d)
+print("Transposed:\n", transposed)
+print("Shape:", transposed.shape)
+
+
+
+//TASK 5
+
+arr = np.random.randint(10, 51, size=15)
+
+greater_than_25 = arr[arr > 25]
+arr[arr < 30] = 0
+count_div_5 = np.sum(arr % 5 == 0)
+
+print("Original:", arr)
+print("Greater than 25:", greater_than_25)
+print("Modified:", arr)
+print("Divisible by 5:", count_div_5)
+
+
+//TASK 6
+
+equal_spaced = np.linspace(0, 1, 10)
+identity_matrix = np.eye(4)
+
+random_arr = np.random.randint(1, 101, size=20)
+sorted_arr = np.sort(random_arr)
+largest_5 = sorted_arr[-5:]
+
+print("Equally Spaced:", equal_spaced)
+print("Identity Matrix:\n", identity_matrix)
+print("Sorted:", sorted_arr)
+print("Top 5:", largest_5)
+
+
+// TASK 7
+
+import time
+
+X = np.random.rand(100, 100)
+Y = np.random.rand(100, 100)
+
+start = time.time()
+
+result = np.matmul(X, Y)
+det = np.linalg.det(result)
+inverse = None
+if det != 0:
+    inverse = np.linalg.inv(result)
+
+end = time.time()
+duration = end - start
+
+print("Result Shape:", result.shape)
+print("Determinant:", det)
+if inverse is not None:
+    print("Inverse exists.")
+else:
+    print("Inverse does not exist.")
+print("Time Taken:", duration, "seconds")
+
