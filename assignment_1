@@ -1,0 +1,38 @@
+import numpy as np
+import csv
+class InvalidDataShapeError(Exception):
+    def __init__(self, message="Input data must be a 2D array."):
+        self.message = message
+        super().__init__(self.message)
+def create_2d_array(rows, cols):
+    if rows <= 0 or cols <= 0:
+        raise InvalidDataShapeError("Rows and columns must be greater than zero.")
+    return np.random.randint(1, 100, size=(rows, cols))
+
+def write_to_csv(filename, array):
+    if len(array.shape) != 2:
+        raise InvalidDataShapeError()
+    with open(filename, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        for row in array:
+            writer.writerow(row)
+    print(f"Data written to '{filename}'")
+
+def read_from_csv(filename):
+    data = []
+    with open(filename, mode='r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            data.append([int(val) for val in row])
+    return np.array(data)
+try:
+    array = create_2d_array(5, 4)
+    write_to_csv("data.csv", array)
+    loaded_array = read_from_csv("data.csv")
+    print("Loaded array from CSV:")
+    print(loaded_array)
+
+except InvalidDataShapeError as e:
+    print(f"Error: {e}")
+except Exception as e:
+    print(f"Unexpected Error: {e}")
